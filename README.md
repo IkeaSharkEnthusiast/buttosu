@@ -5,6 +5,7 @@ Reads your misses and vibrates your...toys using the [ButtPlug.io](https://buttp
 1. Download the [latest release](https://github.com/IkeaSharkEnthusiast/buttosu/releases/)
 2. Run [Intiface Central/Engine](https://intiface.com/), [osu!](https://osu.ppy.sh/) and this program.
     * (and wait until a device gets found)
+    * also if it can't resolve stuff, try to restart ur game
 3. Have fun, I guess.
 
 ## Credits
