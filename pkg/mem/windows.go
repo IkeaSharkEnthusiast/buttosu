@@ -220,7 +220,6 @@ func (p process) Pid() int {
 
 func (p process) ReadAt(b []byte, off int64) (n int, err error) {
 	un, err := windows.ReadProcessMemory(p.h, uintptr(off), b)
-	logRead(b, int(un), off, err)
 	return int(un), err
 }
 

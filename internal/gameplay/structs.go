@@ -7,8 +7,10 @@ type dynamicAddresses struct {
 }
 
 var (
-	processes        []mem.Process
-	process          mem.Process
+	processes []mem.Process
+	process   mem.Process
+	procerr   error
+
 	previousHits     = 0
 	DynamicAddresses = dynamicAddresses{}
 )

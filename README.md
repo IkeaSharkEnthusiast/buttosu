@@ -10,3 +10,11 @@ Reads your misses and vibrates your...toys using the [ButtPlug.io](https://buttp
 ## Credits
 - The people behind "[gosumemory](https://github.com/l3lackShark/gosumemory/)" for the memory reader & signatures and stuff.
 - [pidurentry](https://github.com/pidurentry) for the buttplug.io implementation
+
+### TODO
+- [ ] config files
+- [ ] customizable vibration speed
+- [ ] 
+
+### State
+project can get discontinued at any time, pull requests are welcome and will probably get merged if they don't add useless stuff.

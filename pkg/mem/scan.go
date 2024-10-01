@@ -120,6 +120,7 @@ func find(p Process, pat pattern, reg Map) (int64, error) {
 		if err != nil {
 			return 0, err
 		}
+
 		if at, ok := search(buf[:n], pat); ok {
 			return reg.Start() + i + int64(at), nil
 		}
@@ -131,6 +132,7 @@ func find(p Process, pat pattern, reg Map) (int64, error) {
 
 		i += int64(diff)
 	}
+
 	return 0, ErrPatternNotFound
 }
 
@@ -350,13 +352,6 @@ func (m *mem) eval(f func(p int64) (int64, error)) (int64, error) {
 		dereferenced, err := f(childAddr)
 		if err != nil {
 			return 0, err
-		}
-
-		if m.Offset == 0 {
-			log("[0x%x] = 0x%x\n", childAddr, dereferenced)
-		} else {
-			log("[0x%x] + 0x%x = 0x%x\n", childAddr, m.Offset,
-				dereferenced+m.Offset)
 		}
 
 		return dereferenced + m.Offset, nil

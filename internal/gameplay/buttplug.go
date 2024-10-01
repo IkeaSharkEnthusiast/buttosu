@@ -27,11 +27,7 @@ func handleVibrationQueue() {
 		}
 
 		time.Sleep(v)
-
-		// go through all vibrators and stop them
-		for _, d := range Client.Vibrators() {
-			_ = d.Stop()
-		}
+		Client.StopAll()
 	}
 }
 

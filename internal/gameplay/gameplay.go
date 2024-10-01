@@ -8,24 +8,38 @@ import (
 )
 
 func Init() {
+	if err := initBase(); err != nil {
+		logging.Global.Fatal().
+			Err(err).
+			Msg("Error occurred while initializing")
+	}
+
 	for {
 		start := time.Now()
 
-		err := mem.Read(process, &patterns.PreSongSelectAddresses, &menuData.PreSongSelectData)
-		if err != nil {
-			logging.Global.Err(err).Msg("Failed to read 'PreSongSelectData'")
-			DynamicAddresses.IsReady = false
-			continue
-		}
+		if DynamicAddresses.IsReady {
+			if err := mem.Read(
+				process,
+				&patterns.PreSongSelectAddresses,
+				&menuData.PreSongSelectData,
+			); err != nil {
+				logging.Global.
+					Err(err).
+					Msg("Failed to read 'PreSongSelectData'")
 
-		getGameplayData()
+				DynamicAddresses.IsReady = false
+				continue
+			}
+
+			handleRead()
+		}
 
 		elapsed := time.Since(start)
 		time.Sleep(time.Duration(1-int(elapsed.Milliseconds())) * time.Millisecond)
 	}
 }
 
-func getGameplayData() {
+func handleRead() {
 	err := mem.Read(process, &patterns, &gameplayData)
 	if err != nil &&
 		!strings.Contains(err.Error(), "LeaderBoard") &&
