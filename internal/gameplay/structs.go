@@ -1,14 +1,14 @@
 package gameplay
 
-import "buttplugosu/pkg/mem"
+import "buttplugosu/pkg/memory"
 
 type dynamicAddresses struct {
 	IsReady bool
 }
 
 var (
-	processes []mem.Process
-	process   mem.Process
+	processes []memory.Process
+	process   memory.Process
 	procerr   error
 
 	previousHits     = 0

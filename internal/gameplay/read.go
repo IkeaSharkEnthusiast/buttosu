@@ -6,7 +6,7 @@ type PreSongSelectAddresses struct {
 }
 
 type PreSongSelectData struct {
-	Status uint32 `mem:"[Status - 0x4]"`
+	Status uint32 `memory:"[Status - 0x4]"`
 }
 
 type staticAddresses struct {
@@ -42,51 +42,51 @@ func (staticAddresses) Leaderboard() string {
 
 type menuD struct {
 	PreSongSelectData
-	MenuGameMode       int32   `mem:"[Base - 0x33]"`
-	Plays              int32   `mem:"[Base - 0x33] + 0xC"`
-	Artist             string  `mem:"[[Beatmap] + 0x18]"`
-	ArtistOriginal     string  `mem:"[[Beatmap] + 0x1C]"`
-	Title              string  `mem:"[[Beatmap] + 0x24]"`
-	TitleOriginal      string  `mem:"[[Beatmap] + 0x28]"`
-	AR                 float32 `mem:"[Beatmap] + 0x2C"`
-	CS                 float32 `mem:"[Beatmap] + 0x30"`
-	HP                 float32 `mem:"[Beatmap] + 0x34"`
-	OD                 float32 `mem:"[Beatmap] + 0x38"`
-	StarRatingStruct   uint32  `mem:"[Beatmap] + 0x8C"`
-	AudioFilename      string  `mem:"[[Beatmap] + 0x64]"`
-	BackgroundFilename string  `mem:"[[Beatmap] + 0x68]"`
-	Folder             string  `mem:"[[Beatmap] + 0x78]"`
-	Creator            string  `mem:"[[Beatmap] + 0x7C]"`
-	Name               string  `mem:"[[Beatmap] + 0x80]"`
-	Path               string  `mem:"[[Beatmap] + 0x90]"`
-	Difficulty         string  `mem:"[[Beatmap] + 0xAC]"`
-	MapID              int32   `mem:"[Beatmap] + 0xC8"`
-	SetID              int32   `mem:"[Beatmap] + 0xCC"`
-	RankedStatus       int32   `mem:"[Beatmap] + 0x12C"` // unknown, unsubmitted, pending/wip/graveyard, unused, ranked, approved, qualified
-	MD5                string  `mem:"[[Beatmap] + 0x6C]"`
-	ObjectCount        int32   `mem:"[Beatmap] + 0xFC"`
+	MenuGameMode       int32   `memory:"[Base - 0x33]"`
+	Plays              int32   `memory:"[Base - 0x33] + 0xC"`
+	Artist             string  `memory:"[[Beatmap] + 0x18]"`
+	ArtistOriginal     string  `memory:"[[Beatmap] + 0x1C]"`
+	Title              string  `memory:"[[Beatmap] + 0x24]"`
+	TitleOriginal      string  `memory:"[[Beatmap] + 0x28]"`
+	AR                 float32 `memory:"[Beatmap] + 0x2C"`
+	CS                 float32 `memory:"[Beatmap] + 0x30"`
+	HP                 float32 `memory:"[Beatmap] + 0x34"`
+	OD                 float32 `memory:"[Beatmap] + 0x38"`
+	StarRatingStruct   uint32  `memory:"[Beatmap] + 0x8C"`
+	AudioFilename      string  `memory:"[[Beatmap] + 0x64]"`
+	BackgroundFilename string  `memory:"[[Beatmap] + 0x68]"`
+	Folder             string  `memory:"[[Beatmap] + 0x78]"`
+	Creator            string  `memory:"[[Beatmap] + 0x7C]"`
+	Name               string  `memory:"[[Beatmap] + 0x80]"`
+	Path               string  `memory:"[[Beatmap] + 0x90]"`
+	Difficulty         string  `memory:"[[Beatmap] + 0xAC]"`
+	MapID              int32   `memory:"[Beatmap] + 0xC8"`
+	SetID              int32   `memory:"[Beatmap] + 0xCC"`
+	RankedStatus       int32   `memory:"[Beatmap] + 0x12C"` // unknown, unsubmitted, pending/wip/graveyard, unused, ranked, approved, qualified
+	MD5                string  `memory:"[[Beatmap] + 0x6C]"`
+	ObjectCount        int32   `memory:"[Beatmap] + 0xFC"`
 }
 
 type gameplayD struct {
-	Retries             int32   `mem:"[Base - 0x33] + 0x8"`
-	PlayerName          string  `mem:"[[[Ruleset + 0x68] + 0x38] + 0x28]"`
-	ModsXor1            int32   `mem:"[[[Ruleset + 0x68] + 0x38] + 0x1C] + 0xC"`
-	ModsXor2            int32   `mem:"[[[Ruleset + 0x68] + 0x38] + 0x1C] + 0x8"`
-	HitErrors           []int32 `mem:"[[[Ruleset + 0x68] + 0x38] + 0x38]"`
-	Mode                int32   `mem:"[[Ruleset + 0x68] + 0x38] + 0x64"`
-	MaxCombo            int16   `mem:"[[Ruleset + 0x68] + 0x38] + 0x68"`
-	ScoreV2             int32   `mem:"Ruleset + 0x100"`
-	Hit100              int16   `mem:"[[Ruleset + 0x68] + 0x38] + 0x88"`
-	Hit300              int16   `mem:"[[Ruleset + 0x68] + 0x38] + 0x8A"`
-	Hit50               int16   `mem:"[[Ruleset + 0x68] + 0x38] + 0x8C"`
-	HitGeki             int16   `mem:"[[Ruleset + 0x68] + 0x38] + 0x8E"`
-	HitKatu             int16   `mem:"[[Ruleset + 0x68] + 0x38] + 0x90"`
-	HitMiss             int16   `mem:"[[Ruleset + 0x68] + 0x38] + 0x92"`
-	Combo               int16   `mem:"[[Ruleset + 0x68] + 0x38] + 0x94"`
-	PlayerHPSmooth      float64 `mem:"[[Ruleset + 0x68] + 0x40] + 0x14"`
-	PlayerHP            float64 `mem:"[[Ruleset + 0x68] + 0x40] + 0x1C"`
-	Accuracy            float64 `mem:"[[Ruleset + 0x68] + 0x48] + 0xC"`
-	LeaderBoard         uint32  `mem:"[Ruleset + 0x7C] + 0x24"`
-	KeyOverlayArrayAddr uint32  `mem:"[[Ruleset + 0xB0] + 0x10] + 0x4"` //has to be at the end due to mem not liking dead pointers, TODO: Fix this mem-side
-	// Score               int32   `mem:"[[Ruleset + 0x68] + 0x38] + 0x78"`
+	Retries             int32   `memory:"[Base - 0x33] + 0x8"`
+	PlayerName          string  `memory:"[[[Ruleset + 0x68] + 0x38] + 0x28]"`
+	ModsXor1            int32   `memory:"[[[Ruleset + 0x68] + 0x38] + 0x1C] + 0xC"`
+	ModsXor2            int32   `memory:"[[[Ruleset + 0x68] + 0x38] + 0x1C] + 0x8"`
+	HitErrors           []int32 `memory:"[[[Ruleset + 0x68] + 0x38] + 0x38]"`
+	Mode                int32   `memory:"[[Ruleset + 0x68] + 0x38] + 0x64"`
+	MaxCombo            int16   `memory:"[[Ruleset + 0x68] + 0x38] + 0x68"`
+	ScoreV2             int32   `memory:"Ruleset + 0x100"`
+	Hit100              int16   `memory:"[[Ruleset + 0x68] + 0x38] + 0x88"`
+	Hit300              int16   `memory:"[[Ruleset + 0x68] + 0x38] + 0x8A"`
+	Hit50               int16   `memory:"[[Ruleset + 0x68] + 0x38] + 0x8C"`
+	HitGeki             int16   `memory:"[[Ruleset + 0x68] + 0x38] + 0x8E"`
+	HitKatu             int16   `memory:"[[Ruleset + 0x68] + 0x38] + 0x90"`
+	HitMiss             int16   `memory:"[[Ruleset + 0x68] + 0x38] + 0x92"`
+	Combo               int16   `memory:"[[Ruleset + 0x68] + 0x38] + 0x94"`
+	PlayerHPSmooth      float64 `memory:"[[Ruleset + 0x68] + 0x40] + 0x14"`
+	PlayerHP            float64 `memory:"[[Ruleset + 0x68] + 0x40] + 0x1C"`
+	Accuracy            float64 `memory:"[[Ruleset + 0x68] + 0x48] + 0xC"`
+	LeaderBoard         uint32  `memory:"[Ruleset + 0x7C] + 0x24"`
+	KeyOverlayArrayAddr uint32  `memory:"[[Ruleset + 0xB0] + 0x10] + 0x4"` //has to be at the end due to memory not liking dead pointers, TODO: Fix this memory-side
+	// Score               int32   `memory:"[[Ruleset + 0x68] + 0x38] + 0x78"`
 }

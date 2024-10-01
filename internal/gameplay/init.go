@@ -2,7 +2,7 @@ package gameplay
 
 import (
 	"buttplugosu/pkg/logging"
-	"buttplugosu/pkg/mem"
+	"buttplugosu/pkg/memory"
 	"regexp"
 )
 
@@ -15,7 +15,7 @@ func initBase() error {
 	var err error
 
 	// find osu process
-	processes, err = mem.FindProcess(osuProcessRegex, "osu!lazer", "osu!framework")
+	processes, err = memory.FindProcess(osuProcessRegex, "osu!lazer", "osu!framework")
 	if err != nil {
 		return err
 	}
@@ -27,7 +27,7 @@ func initBase() error {
 		Msg("Found process")
 
 	// resolve song select pattern
-	err = mem.ResolvePatterns(process, &patterns.PreSongSelectAddresses)
+	err = memory.ResolvePatterns(process, &patterns.PreSongSelectAddresses)
 	if err != nil {
 		logging.Global.
 			Err(err).
@@ -36,7 +36,7 @@ func initBase() error {
 	}
 
 	// read pre song select data
-	if err = mem.Read(process, &patterns.PreSongSelectAddresses, &menuData.PreSongSelectData); err != nil {
+	if err = memory.Read(process, &patterns.PreSongSelectAddresses, &menuData.PreSongSelectData); err != nil {
 		logging.Global.
 			Err(err).
 			Msg("Reading failed")
@@ -47,7 +47,7 @@ func initBase() error {
 	logging.Global.Info().
 		Msg("Resolving patterns")
 
-	err = mem.ResolvePatterns(process, &patterns)
+	err = memory.ResolvePatterns(process, &patterns)
 	if err != nil {
 		return err
 	}

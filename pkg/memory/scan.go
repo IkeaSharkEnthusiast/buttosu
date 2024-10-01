@@ -1,4 +1,4 @@
-package mem
+package memory
 
 import (
 	"bytes"
@@ -209,7 +209,7 @@ func Read(r io.ReaderAt, addresses interface{}, p interface{}) error {
 		field := val.Field(i)
 		fieldT := valueType.Field(i)
 
-		tag, ok := fieldT.Tag.Lookup("mem")
+		tag, ok := fieldT.Tag.Lookup("memory")
 		if !ok {
 			continue
 		}
@@ -244,7 +244,7 @@ func Read(r io.ReaderAt, addresses interface{}, p interface{}) error {
 
 		expr, err := parseMem(tag, varFunc)
 		if err != nil {
-			return fmt.Errorf("failed to parse mem tag for %s.%s: %w", valueType.Name(), fieldT.Name, err)
+			return fmt.Errorf("failed to parse memory tag for %s.%s: %w", valueType.Name(), fieldT.Name, err)
 		}
 
 		addr, err := expr.eval(evalFunc)

@@ -2,7 +2,7 @@ package gameplay
 
 import (
 	"buttplugosu/pkg/logging"
-	"buttplugosu/pkg/mem"
+	"buttplugosu/pkg/memory"
 	"strings"
 	"time"
 )
@@ -18,7 +18,7 @@ func Init() {
 		start := time.Now()
 
 		if DynamicAddresses.IsReady {
-			if err := mem.Read(
+			if err := memory.Read(
 				process,
 				&patterns.PreSongSelectAddresses,
 				&menuData.PreSongSelectData,
@@ -40,7 +40,7 @@ func Init() {
 }
 
 func handleRead() {
-	err := mem.Read(process, &patterns, &gameplayData)
+	err := memory.Read(process, &patterns, &gameplayData)
 	if err != nil &&
 		!strings.Contains(err.Error(), "LeaderBoard") &&
 		!strings.Contains(err.Error(), "KeyOverlay") {
